@@ -1,9 +1,11 @@
 use rand::seq::SliceRandom;
 
+const WORD: &[&str] = &["foo", "bar", "baz", "quz", "no"];
+
+
 fn random_word() -> String {
     let mut rng = rand::thread_rng();
-    let words: [&str; 3] = ["foo", "bar", "baz"];
-    words.choose(&mut rng).unwrap().to_string()
+    WORD.choose(&mut rng).unwrap().to_string()
 }
 
 fn main() {
