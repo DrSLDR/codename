@@ -5,8 +5,14 @@ GfyCat URLs and Jitsi room names.
 
 ### Installation
 
-It's not yet distributed via cargo -- it'll get there -- so in the meantime
-you can clone and compile it with `cargo build`.
+The simplest way to get the binary is to install it via cargo
+
+```bash
+$ cargo install codename
+```
+
+If you instead prefer to build from source, you can clone this repository and
+build/run via `cargo build` and `cargo run` respectively.
 
 ### License
 
