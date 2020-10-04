@@ -16,28 +16,31 @@ fn generate_classmap() -> HashMap<String, &'static [&'static str]> {
     map
 }
 
-fn random_adjective(rng: &mut ThreadRng) -> String {
-    wl::ADJECTIVE.choose(rng).unwrap().to_string()
+fn get_random(ls: &[&str], rng: &mut ThreadRng) -> String {
+    ls.choose(rng).unwrap().to_string()
 }
 
-fn random_adverb(rng: &mut ThreadRng) -> String {
-    wl::ADVERB.choose(rng).unwrap().to_string()
-}
-
-fn random_pluralnoun(rng: &mut ThreadRng) -> String {
-    wl::PLURALNOUN.choose(rng).unwrap().to_string()
-}
-
-fn random_verb(rng: &mut ThreadRng) -> String {
-    wl::VERB.choose(rng).unwrap().to_string()
+fn generate_codename(
+    pattern: String,
+    map: &HashMap<String, &[&str]>,
+    rng: &mut ThreadRng,
+) -> String {
+    let mut pattern = pattern.clone();
+    while pattern.find('#') != None {
+        for cl in map.keys() {
+            if pattern.find(cl) != None {
+                let word = get_random(map.get(cl).unwrap(), rng);
+                pattern = pattern.replacen(cl, &word, 1);
+            }
+        }
+    }
+    pattern
 }
 
 fn main() {
     let mut rng: ThreadRng = rand::thread_rng();
     let map = generate_classmap();
 
-    println!("Random adjective: {}", random_adjective(&mut rng));
-    println!("Random adverb: {}", random_adverb(&mut rng));
-    println!("Random pluralnoun: {}", random_pluralnoun(&mut rng));
-    println!("Random verb: {}", random_verb(&mut rng));
+    let pattern: String = get_random(PATTERN, &mut rng);
+    println!("{}", generate_codename(pattern, &map, &mut rng));
 }
