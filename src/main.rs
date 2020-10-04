@@ -4,6 +4,17 @@ use rand::rngs::ThreadRng;
 use rand::seq::SliceRandom;
 use wordlist as wl;
 
+const CLASS: &[&str] = &[
+    "#ADJECTIVE#",
+    "#ADVERB#",
+    "#PLURALNOUN#",
+    "#VERB#",
+];
+
+const PATTERN: &[&str] = &[
+    "#ADJECTIVE##PLURALNOUN##VERB##ADVERB#",
+];
+
 fn random_adjective(rng: &mut ThreadRng) -> String {
     wl::ADJECTIVE.choose(rng).unwrap().to_string()
 }
