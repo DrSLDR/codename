@@ -2,9 +2,10 @@ mod wordlist;
 
 use rand::rngs::ThreadRng;
 use rand::seq::SliceRandom;
+use wordlist as wl;
 
 fn random_pluralnoun(rng: &mut ThreadRng) -> String {
-    wordlist::PLURALNOUN.choose(rng).unwrap().to_string()
+    wl::PLURALNOUN.choose(rng).unwrap().to_string()
 }
 
 fn main() {

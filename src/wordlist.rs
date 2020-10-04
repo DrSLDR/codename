@@ -1,4 +1,4 @@
-pub const PLURALNOUN: &[&str] = &[
+pub(crate) const PLURALNOUN: &[&str] = &[
     "Abilities",
     "Absences",
     "Abundances",
