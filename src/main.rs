@@ -5,11 +5,9 @@ use rand::seq::SliceRandom;
 use std::collections::HashMap;
 use wordlist as wl;
 
-const PATTERN: &[&str] = &[
-    "#ADJECTIVE##PLURALNOUN##VERB##ADVERB#",
-];
+const PATTERN: &[&str] = &["#ADJECTIVE##PLURALNOUN##VERB##ADVERB#"];
 
-fn generate_classmap() -> HashMap<String, &'static[&'static str]> {
+fn generate_classmap() -> HashMap<String, &'static [&'static str]> {
     let mut map: HashMap<String, &[&str]> = HashMap::new();
     map.insert("#ADJECTIVE#".to_string(), wl::ADJECTIVE);
     map.insert("#ADVERB#".to_string(), wl::ADVERB);
