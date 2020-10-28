@@ -16,13 +16,13 @@ fn generate_classmap() -> HashMap<String, &'static [&'static str]> {
     map
 }
 
-fn random(ls: &[&str], rng: &mut ThreadRng) -> String {
-    ls.choose(rng).unwrap().to_string()
+fn random(ls: &[&'static str], rng: &mut ThreadRng) -> &'static str {
+    ls.choose(rng).unwrap()
 }
 
 fn generate_codename(
     mut pattern: String,
-    map: &HashMap<String, &[&str]>,
+    map: &HashMap<String, &[&'static str]>,
     rng: &mut ThreadRng,
 ) -> String {
     while pattern.find('#') != None {
@@ -40,6 +40,6 @@ fn main() {
     let mut rng: ThreadRng = rand::thread_rng();
     let map = generate_classmap();
 
-    let pattern: String = random(PATTERN, &mut rng);
-    println!("{}", generate_codename(pattern, &map, &mut rng));
+    let pattern: &str = random(PATTERN, &mut rng);
+    println!("{}", generate_codename(pattern.to_string(), &map, &mut rng));
 }
